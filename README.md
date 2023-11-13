@@ -1,2 +1,1 @@
-# FIT2101 Project
-# Link to google drive: https://drive.google.com/drive/folders/178E8tVfr-qCbeF1RPy6EyFezW-7fN-hq
+The source code to the website that me and my team built in Semester 2, 2023.
