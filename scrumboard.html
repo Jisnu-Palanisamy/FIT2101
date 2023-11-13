@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrum Board</title>
+    <link rel="stylesheet" href="scrum_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+</head>
+<body>
+    <body style="background-color: #D9D9D9;">
+    <nav class="sidebar close">
+        <div class="menu-content">
+            <ul class="menu-items">
+                <div class="menu-title">Planning</div>
+                <li class="item">
+                    <a href="index.html">Product Backlog</a>
+                </li>
+                <li class="item">
+                    <a href="scrumboard.html">Scrum board</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <nav class="navbar">
+        <button id="sidebar-close" class="toggle-btn"><i class="fa-solid fa-bars"></i></button>
+        <button id="logoutButton">Logout</button>
+    </nav>
+
+    <header>
+        <h1>Scrum Board</h1>
+    </header>
+
+    <div class="table-container">
+        <button type="button" id="addSprint">Add Sprint</button>
+        <table class="scrum-table">
+            <thead>
+                <tr>
+                    <th>Sprint Name</th>
+                    <th>Date</th>
+                    <th>Sprint Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div> 
+
+
+    <!-- Sprint Backlog Modal -->
+    <div id="sprintBacklogModal" class="sprintbacklog_modal">
+        <div class="sprintbacklog-content">
+            <span class="close-backlog-button">&times;</span>
+            <button type="button" id="newtransferButton" class="modal-transfer-btn">Transfer</button>
+            <button id="clearTasks">Clear Tasks</button>
+            <h2>Sprint Backlog</h2>
+            <table class="sprint-backlog-table">
+                <thead>
+                    <tr>
+                        <th>Not Started</th>
+                        <th>Active</th>
+                        <th>Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td id="sprintBacklogNotStarted" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                    <td id="sprintBacklogActive" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                    <td id="sprintBacklogCompleted" ondrop="drop(event)" ondragover="allowDrop(event)"></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="sprintModal" class="scrum_modal">
+        <div class="scrum_modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Add New Sprint</h2>
+        
+            <div class="input-fields">  <!-- Wrap the inputs and labels -->
+                <label for="sprintName">Sprint Name:</label>
+                <input type="text" id="sprintName" placeholder="Sprint Name" required>
+                
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate">
+                
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate">
+        
+                <label for="sprintStatus">Sprint Status:</label>
+                <select id="sprintStatus">
+                    <option value="Not started">Not started</option>
+                    <option value="In progress">In progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+        
+                <label for="taskStage">Task Stage:</label>
+                <select id="taskStage">
+                    <option value="Planning" style="background-color: #FFD700;">Planning</option>
+                    <option value="Development" style="background-color: #4CAF50;">Development</option>
+                    <option value="Integration" style="background-color: #FF4500;">Integration</option>
+                    <option value="Testing" style="background-color: #1E90FF;">Testing</option>
+                </select>
+            </div>
+        
+            <button type="button" id="submitSprint">Add Sprint</button>
+        </div>
+
+    </div>
+
+    <!-- The input participant Modal -->
+    <div>
+        <button type="button" id="participant">Participant</button>
+    </div> 
+
+    <div id="inputParticipantModal" class="scrum_modal">
+        <div class="scrum_modal-content">
+            <span id = "closeAddParticipantButton" class="close-button">&times;</span>
+            <h2>Add New Participant</h2>
+        
+            <div class="input-fields">  <!-- Wrap the inputs and labels -->
+                <label for="participantName">Name:</label>
+                <input type="text" id="participantName" required>
+                
+                <label for="participantEmail">Email:</label>
+                <input type="text" id="participantEmail" required>
+                
+                <label for="participantPassword">Password:</label>
+                <input type="text" id="participantPassword" required>
+                
+            </div>
+        
+            <button type="button" id="submitParticipant">Add Participant</button>
+        </div>
+
+    </div>
+
+    <div id="editParticipantModal" class="scrum_modal">
+        <div class="scrum_modal-content">
+            <span id = "closeEditParticipantButton" class="close-button">&times;</span>
+            <h2>Edit Participant</h2>
+        
+            <div class="input-fields">  <!-- Wrap the inputs and labels -->
+                <label for="participantName">Name:</label>
+                <input type="text" id="editParticipantName" required>
+                
+                <label for="participantEmail">Email:</label>
+                <input type="text" id="editParticipantEmail" required>
+                
+                <label for="participantPassword">Password:</label>
+                <input type="text" id="editParticipantPassword" required>
+                
+            </div>
+        
+            <button type="button" id="submitEditParticipant">Update Participant</button>
+        </div>
+
+    </div>
+
+    <!-- Participant Modal -->
+    <div id="participantModal" class="sprintbacklog_modal">
+        <div class="sprintbacklog-content">
+            <span id = "clss" class="close-backlog-button">&times;</span>
+            <button type="button" id="addParticipantButton" class="modal-transfer-btn">Add Participant</button>
+            <h2>Participants</h2>
+            <table id =  "participantModal-table" class="sprint-backlog-table">
+                <thead>
+                    <tr>
+                        <th>Edit</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="taskDetailsModal" class="task-details-modal">
+        <div class="task-details-content">
+            <span class="close-details-button" onclick="closeTaskDetailsModal()">&times;</span>
+            <h2>Task Details</h2>
+            <div id="taskDetailsContent">
+                
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskNameInput" placeholder="Task Name">
+                
+                <label for="tag">Tag:</label>
+                <input type="text" id="tagInput" placeholder="Tag">
+    
+                <label for="storyPoints">Story Points:</label>
+                <input list="storyPointOptions" type="text" id="storyPointsInput" placeholder="Story Points">
+                <datalist id="storyPointOptions">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </datalist>
+                
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority">
+                    <option style="background-color: red;">Urgent</option>
+                    <option style="background-color: orange;">Important</option>
+                    <option style="background-color: yellow;">Medium</option>
+                    <option style="background-color: green;">Low</option>
+                </select><br><br>
+                
+                <label for="logTime">Log Time (HH:MM):</label>
+                <input type="text" id="logTimeInput" placeholder="00:00" value="0:0">
+                <button onclick="addToTotalLogTime()">Add To Total Log Time</button>
+
+                <button id="clearTotalTimeButton">Clear Total Time</button>
+
+                <br><br>
+    
+                <button id="saveDetailsButton">Save Details</button>
+            </div>
+        </div>
+    </div>
+       
+
+    <script src="scrum_project.js"></script>
+
+</body>
+</html>

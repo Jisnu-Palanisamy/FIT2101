@@ -1,0 +1,486 @@
+body {
+    background-color: #3C899A;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+}
+
+#container {
+    text-align: center;
+}
+
+h1, th, td {
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: auto; 
+    table-layout:auto; 
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 25%; 
+}
+
+th.task-name {
+    background-color: #FF7A00;
+}
+
+th.tag {
+    background-color: #0D99FF;
+}
+
+th.story-points {
+    background-color: #F24822;
+}
+
+th.priority {
+    background-color: #14AE5C;
+}
+
+th {
+    color: white;
+}
+
+#addTaskButton {
+    color: white;
+    background-color: #FF7A00;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#tagIconButton{
+    background-color: #0D99FF;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#sortPriorityButton {
+    background-color: #14AE5C;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tag-dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #85E0A3;
+    top: 100%;
+}
+
+.tag-dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tag-dropdown li:hover {
+    background-color:white;
+}
+
+
+.dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #85E0A3;
+    top: 100%;
+    /* width: 150px; */
+}
+
+.dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color:white;
+}
+  
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    width: 40%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.close {
+    color: #000;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+.productBacklog td div {
+    text-align: center;
+    padding: 10px;  
+    border: 1px solid #ddd; 
+    box-sizing: border-box; 
+    width: 100%; 
+    min-height: 100px;  
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+}
+
+th.edit, td.edit {
+    width: 5%;
+}
+
+.edit-icon {
+    cursor: pointer;
+    margin-left: 5px; 
+}
+/* Style the info modal */
+#infoModal {
+    color: #000;
+    text-align: left;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+
+}
+
+
+/* Style the info modal content */
+.modal-content {
+    background-color: #c2c2c2;
+    margin: auto;
+    padding: 20px;
+    width: 35%;  
+    height: 50%;  
+    overflow-y: auto; 
+    font-weight: normal;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Style the close button for the info modal */
+.close-info {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.close-info:hover,
+.close-info:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style each category box within the info modal */
+.category-box {
+    background-color: #3C899A;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Style the heading for each category */
+.category-heading {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Style the content within each category */
+.category-content {
+    margin-top: 10px;
+}
+#taskDescription {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+#taskName {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#taskType {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#tags {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#storyPoint {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#assignedTo {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#taskStages {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#taskStatus {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#addTask {
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-buttons {
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px;
+    padding-right: 155px;
+    position: relative;
+}
+
+label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.label-dropdown-container {
+    display: inline-block;
+    width: auto; 
+    padding: 10px;
+    vertical-align: middle; 
+    background-color: #3C899A;
+}
+
+.new-line-label {
+    display: block; 
+    clear: both;    
+    margin-top: 20px;
+}
+.storypoint-container {
+    display: flex;        
+    align-items: center;  
+    gap: 10px;            
+    margin-top: 20px;
+}
+
+
+.tag-pill {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: black;
+    margin-right: 5px;
+    color: #eee;
+    overflow: auto;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.sidebar {
+    position: fixed;
+    top: 0;  /* ensures it starts from the top */
+    left: 0;  /* start from the left edge */
+    height: 100vh;
+    width: 124px; /* Increased width */
+    background: white;
+    transition: all 0.3s; /* For smooth animation */
+}
+
+/* Hide the sidebar when closed */
+.sidebar.close {
+    left: -260px;
+}
+
+.logo {
+    font-size: 25px;
+    padding: 0 15px;
+}
+.sidebar a{
+    color: #fff;
+    text-decoration: none;
+}
+.menu-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 40px;
+}
+.menu-items{
+    list-style: none;
+}
+.menu-title{
+    color: white;
+    font-size: 18px;
+    padding: 15px 20px;
+}
+.item a,
+.submenu-item {
+    padding: 16px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 12.5px;
+    color: darkblue;
+}
+.item a:hover,
+.submenu-item:hover {
+    background: lightblue;
+}
+
+.navbar{
+    left: 0; /* position navbar at the left edge */
+    top: 0;
+    height: 60px; /* fixed height for navbar */
+    width: 100%;
+    position: fixed;
+    padding: 15px 20px;
+    /* background: #11101d; Added a background color for visibility */
+    display: flex; /* Flexbox to align child elements */
+    align-items: center; /* Vertically center child elements */
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 25px;
+    display: flex; /* Flexbox to align child elements */
+    align-items: center; /* Vertically center child elements */
+    justify-content: center; /* Horizontally center child elements */
+}
+.navbar #sidebar-close {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: black;
+}
+
+.transfer-icon {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.calendar-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.calendar-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#logoutButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336; /* red color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logoutButton:hover {
+    background-color: #e53935; /* dark red on hover */
+}

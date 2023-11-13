@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Backlog</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+</head>
+<body>
+<div id="container">
+    <h1>Product Backlog</h1>   
+    <div class="action-buttons">
+        <button id="addTaskButton">Add Task</button>
+        <button id="tagIconButton">Filter Tags</button>
+        <ul id="tagDropdown" class="tag-dropdown">
+            <li><a href="#">Frontend</a></li>
+            <li><a href="#">Backend</a></li>
+            <li><a href="#">API</a></li>
+            <li><a href="#">Database</a></li>
+            <li><a href="#">Framework</a></li>
+            <li><a href="#">Testing</a></li>
+            <li><a href="#">UI</a></li>
+            <li><a href="#">UX</a></li>
+            <li><a href="#">Clear Filter</a></li>
+        </ul>
+        <button id="sortPriorityButton">Sort Tasks</button>
+        <ul id="sortDropdown" class="dropdown">
+            <li><a href="#" id="sortOldestToNewest">Oldest Task to Newest</a></li>
+            <li><a href="#" id="sortNewestToOldest">Newest Task to Oldest</a></li>
+            <li><a href="#" id="sortHighestToLowest">Highest Priority to Lowest</a></li>
+            <li><a href="#" id="sortLowestToHighest">Lowest Priority to Highest</a></li>
+        </ul>
+    </div> 
+
+    <div id="transferDateModal" class="calendar-modal">
+        <div class="calendar-modal-content">
+          <span class="close-button">&times;</span>
+          <h2>Select Dates</h2>
+          <label>Start Date: <input type="date" id="transferStartDate"></label>
+          <label>End Date: <input type="date" id="transferEndDate"></label>
+          <button id="transferDateSubmit">Transfer</button>
+        </div>
+      </div>
+
+    <table id="productBacklog">
+        <thead>
+        <tr>
+            <th class="task-name">
+                <div class="taskNameHeader">
+                    Task Name
+                </div>
+            </th>
+            <th class="tag">
+                <div class="tagHeader">
+                    Tag
+                </div>
+
+                <div id="infoModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-info">&times;</span>
+                        <div id="infoContent">
+                        </div>
+                    </div>
+                </div>
+            </th>
+            <th class="story-points">Story Points</th>
+            <th class="priority">
+                <div class="priorityHeader">
+                    Priority
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody id="backlogBody">
+        </tbody>
+    </table>
+</div>
+<script src="project.js"></script>
+<div id="taskModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Enter Details</h2>
+        <form id="taskForm">
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" name="taskName"><br><br>
+
+            <label for="taskDescription">Task Description:</label>
+            <input type="text" id="taskDescription" name="taskDescription"><br><br>
+
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority">
+                <option style="background-color: red;">Urgent</option>
+                <option style="background-color: orange;">Important</option>
+                <option style="background-color: yellow;">Medium</option>
+                <option style="background-color: green;">Low</option>
+            </select><br><br>
+
+            <label for="taskType">Task Type:</label>
+            <select id="taskType" name="taskType">
+                <option>Story</option>
+                <option>Bug</option>
+            </select><br><br>
+
+            <label for="tags">Tags:</label>
+            <div class="label-dropdown-container">    
+            <select name="tags" id="tags" multiple>
+                <option value="1">Frontend</option>
+                <option value="2">Backend</option>
+                <option value="3">API</option>
+                <option value="4">Database</option>
+                <option value="5">Framework</option>
+                <option value="6">Testing</option>
+                <option value="7">UI</option>
+                <option value="8">UX</option>
+            </select>
+            
+            <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+            <script>
+                new MultiSelectTag('tags')
+            </script>
+            </div>
+            <div class="storypoint-container">
+            <label for="storyPoint" class="new-line-label">Story Point:</label>
+            <input type="text" id="storyPoint" name="storyPoint" list="storyPointOptions">
+        </div>
+            <datalist id="storyPointOptions">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </datalist><br><br>
+
+            <label for="assignedTo">Assigned To:</label>
+            <input type="text" id="assignedTo" name="assignedTo"><br><br>
+
+            <label for="taskStages">Task Stages:</label>
+            <select id="taskStages" name="taskStages">
+                <option>Planning</option>
+                <option>Development</option>
+                <option>Integration</option>
+                <option>Testing</option>
+            </select><br><br>
+
+            <label for="taskStatus">Task Status:</label>
+            <select id="taskStatus" name="taskStatus">
+                <option>Not started</option>
+                <option>In progress</option>
+                <option>Completed</option>
+            </select><br><br>
+
+            <button type="button" id="addTask">Add Task</button>
+        </form>
+    </div>
+</div>
+<nav class="sidebar close">
+    <div class="menu-content">
+        <ul class="menu-items">
+            <div class="menu-title">Planning</div>
+            <li class="item">
+                <a href="#">Product Backlog</a>
+            </li>
+            <li class="item">
+                <a href="scrumboard.html">Scrum board</a>
+            </li>                
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar">
+    <button id="sidebar-close" class="toggle-btn"><i class="fa-solid fa-bars"></i></button>
+    <button id="logoutButton">Logout</button>
+</nav>
+
+</body>
+</html>

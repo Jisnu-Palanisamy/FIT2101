@@ -1,0 +1,917 @@
+body {
+    background-color: #3C899A;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+}
+
+#container {
+    text-align: center;
+}
+
+h1, th, td {
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: auto; 
+    table-layout:auto; 
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 25%; 
+}
+
+th.task-name {
+    background-color: #FF7A00;
+}
+
+th.tag {
+    background-color: #0D99FF;
+}
+
+th.story-points {
+    background-color: #F24822;
+}
+
+th.priority {
+    background-color: #14AE5C;
+}
+
+th {
+    color: white;
+}
+
+#addTaskButton {
+    color: white;
+    background-color: #FF7A00;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#tagIconButton{
+    background-color: #0D99FF;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#sortPriorityButton {
+    background-color: #14AE5C;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.tag-dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #85E0A3;
+    top: 100%;
+}
+
+.tag-dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tag-dropdown li:hover {
+    background-color:white;
+}
+
+
+.dropdown {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #85E0A3;
+    top: 100%;
+    /* width: 150px; */
+}
+
+.dropdown li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color:white;
+}
+  
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    width: 40%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.close {
+    color: #000;
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+.productBacklog td div {
+    text-align: center;
+    padding: 10px;  
+    border: 1px solid #ddd; 
+    box-sizing: border-box; 
+    width: 100%; 
+    min-height: 100px;  
+    display: flex;  
+    align-items: center; 
+    justify-content: center; 
+}
+
+th.edit, td.edit {
+    width: 5%;
+}
+
+.edit-icon {
+    cursor: pointer;
+    margin-left: 5px; 
+}
+/* Style the info modal */
+#infoModal {
+    color: #000;
+    text-align: left;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+
+}
+
+
+/* Style the info modal content */
+.modal-content {
+    background-color: #c2c2c2;
+    margin: auto;
+    padding: 20px;
+    width: 35%;  
+    height: 50%;  
+    overflow-y: auto; 
+    font-weight: normal;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Style the close button for the info modal */
+.close-info {
+    color: #000000;
+    float: right;
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.close-info:hover,
+.close-info:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style each category box within the info modal */
+.category-box {
+    background-color: #3C899A;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Style the heading for each category */
+.category-heading {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Style the content within each category */
+.category-content {
+    margin-top: 10px;
+}
+#taskDescription {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+#taskName {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#taskType {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#tags {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#storyPoint {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#assignedTo {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#taskStages {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#taskStatus {
+    width: 50%;
+    padding: 10px;
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+#addTask {
+    background-color: #3C899A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action-buttons {
+    margin-bottom: 10px; 
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px;
+    padding-right: 155px;
+    position: relative;
+}
+
+label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.label-dropdown-container {
+    display: inline-block;
+    width: auto; 
+    padding: 10px;
+    vertical-align: middle; 
+    background-color: #3C899A;
+}
+
+.new-line-label {
+    display: block; 
+    clear: both;    
+    margin-top: 20px;
+}
+.storypoint-container {
+    display: flex;        
+    align-items: center;  
+    gap: 10px;            
+    margin-top: 20px;
+}
+
+
+.tag-pill {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: black;
+    margin-right: 5px;
+    color: #eee;
+    overflow: auto;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.sidebar {
+    position: fixed;
+    top: 0;  /* ensures it starts from the top */
+    left: 0;  /* start from the left edge */
+    height: 100vh;
+    width: 124px; /* Increased width */
+    background: white;
+    transition: all 0.3s; /* For smooth animation */
+}
+
+/* Hide the sidebar when closed */
+.sidebar.close {
+    left: -260px;
+}
+
+.logo {
+    font-size: 25px;
+    padding: 0 15px;
+}
+.sidebar a{
+    color: #fff;
+    text-decoration: none;
+}
+.menu-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-top: 40px;
+}
+.menu-items{
+    list-style: none;
+}
+.menu-title{
+    color: white;
+    font-size: 18px;
+    padding: 15px 20px;
+}
+.item a,
+.submenu-item {
+    padding: 16px;
+    display: inline-block;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 12.5px;
+    color: darkblue;
+}
+.item a:hover,
+.submenu-item:hover {
+    background: lightblue;
+}
+
+.navbar{
+    left: 0; /* position navbar at the left edge */
+    top: 0;
+    height: 60px; /* fixed height for navbar */
+    width: 100%;
+    position: fixed;
+    padding: 15px 20px;
+    /* background: #11101d; Added a background color for visibility */
+    display: flex; /* Flexbox to align child elements */
+    align-items: center; /* Vertically center child elements */
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 25px;
+    display: flex; /* Flexbox to align child elements */
+    align-items: center; /* Vertically center child elements */
+    justify-content: center; /* Horizontally center child elements */
+}
+.navbar #sidebar-close {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: black;
+}
+
+
+.scrum-table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+.scrum-table th,
+.scrum-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: center;
+}
+
+.scrum-table th {
+    background-color: #3C899A;
+    color: white;
+    text-align: center;
+}
+
+.scrum-table label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.table-container {
+    position: relative;
+    width: 80%;
+    margin: 30px auto;
+}
+
+.table-container-participant {
+    position: relative;
+    width: 80%;
+    margin: 30px auto;
+}
+
+#addSprint {
+    position: absolute;
+    top: -50px;
+    right: 125px;
+    padding: 10px 20px;
+    background-color: #A4D9FF;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#participant {
+    position: absolute;
+    top: 66px; 
+    right: 120px;
+    padding: 10px 20px;
+    background-color: #A4D9FF;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+} 
+
+/* Modal Styles */
+.scrum_modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.display-flex {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+
+.scrum_modal-content {
+    background-color: white;
+    border: 1px solid #888;
+    width: 30%;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    
+    /* Add this to ensure the modal content doesn't stretch */
+    max-height: 90vh;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: center;
+
+    padding: 15px 20px; /* Adjusted padding */
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px; /* Consistent spacing after each label */
+}
+
+input[type="text"], 
+input[type="date"], 
+select {
+    padding: 5px; /* Padding inside input elements for better appearance */
+    margin-bottom: 15px; /* Space between inputs */
+    width: 100%; /* Make them span the full width for consistency */
+    box-sizing: border-box; /* Makes sure padding and border are included in total width */
+    background-color: #FF8B8B; /* As you wanted the color to be this */
+    border: 1px solid #aaa; /* A subtle border, you can adjust as needed */
+    border-radius: 4px; /* A slight rounding for better appearance */
+}
+
+.scrum_modal-content input,
+.scrum_modal-content select {
+    background-color: gray;
+    color: white;
+}
+
+.close-button {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    align-self: flex-end; /* This ensures the button aligns to the end of its flex container */
+    margin-bottom: 10px; /* To give some spacing after the button */
+}
+
+
+.close-button:hover,
+.close-button:focus {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+button#submitSprint {
+    margin-top: 10px;
+    background-color: #A4D9FF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: auto;
+    align-self: flex-start
+}
+
+button#submitSprint:hover {
+    background-color: rgb(173, 202, 230);
+}
+
+button#submitParticipant {
+    margin-top: 10px;
+    background-color: #3e9cde;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: auto;
+    align-self: flex-start
+}
+
+button#submitParticipant:hover {
+    background-color: rgb(173, 202, 230);
+}
+
+button#submitEditParticipant {
+    margin-top: 10px;
+    background-color: #A4D9FF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: auto;
+    align-self: flex-start
+}
+
+button#submitEditParticipant:hover {
+    background-color: rgb(173, 202, 230);
+}
+
+option {
+    background-color: inherit;
+}
+
+.delete-icon {
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #ff0000;
+}
+.delete-icon2 {
+    cursor: pointer;
+    color: #ff0000;
+}
+.edit-icon2 {
+    cursor: pointer;
+    color: #7b9247;
+}
+
+.scrum-table tbody tr {
+    position: relative;
+}
+
+.sprintbacklog_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.sprintbacklog-content {
+    background-color: lightgray;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;  /* Increase from max-width to width and set it to 90% */
+    height: 80%; /* Set height to 80% of viewport */
+    padding: 20px;
+    position: relative;
+    overflow-y: auto;  /* In case the content is too long */
+}
+
+.close-backlog-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sprint-backlog-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sprint-backlog-table th {
+    background-color: white;
+    color: #000;
+    padding: 10px;
+    text-align:center;
+
+}
+
+.sprint-backlog-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.modal-transfer-btn {
+    position: absolute;
+    top: 10px;  /* Adjust as necessary */
+    right: 200px; /* Adjust as necessary */
+    background-color: #007bff;  /* Example color */
+    color: white;
+    border: none;
+    padding: 5px 15px;  /* Adjust as necessary */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clearTasks{
+    position: absolute;
+    top: 10px;  /* Adjust as necessary */
+    left: 200px; /* Adjust as necessary */
+    background-color: #007bff;  /* Example color */
+    color: white;
+    border: none;
+    padding: 5px 15px;  /* Adjust as necessary */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-transfer-btn:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+}
+
+.backlog-icon{
+    cursor: pointer;
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+}
+
+/* Add this to your stylesheet */
+.task-card {
+    background-color: #f0f0f0; /* Set your desired background color */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#logoutButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336; /* red color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logoutButton:hover {
+    background-color: #e53935; /* dark red on hover */
+}
+
+/* Modal styling */
+.card_scrum_modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+}
+
+.card_scrum_modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 400px;
+    background-color: #1a1a1a;  /* Dark Grey - Masculine */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card_close-button {
+    color: #ffffff;  /* White */
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.card_input-fields {
+    margin-top: 20px;
+}
+
+.card_input-fields label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;  /* White */
+}
+
+.card_input-fields input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #333;  /* Darker Grey */
+    background-color: #2b2b2b;  /* Dark Grey */
+    color: #ffffff;  /* White */
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;  /* Strong Blue */
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;  /* White */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;  /* Darker Blue */
+}
+
+/* Task Details Modal */
+.task-details-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.task-details-content {
+    background-color: lightgray;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+    text-align: left;
+}
+
+.close-details-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.task-details-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.task-details-content label {
+    font-weight: bold;
+}
+
+.task-details-content p {
+    margin: 5px 0;
+}
+
+.task-details-content input[type="text"] {
+    background-color: #b9b8b8;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    outline: none;
+    font-weight: bold;
+}
+
+.task-details-content input[type="text"]:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
+
+.task-details-content input[type="text"] {
+    background-color: #b9b8b8;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    outline: none;
+    font-weight: bold;
+}
+
+.task-details-content select {
+    background-color: #b9b8b8;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-weight: bold;
+}
+
+.task-details-content select:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0,123,255,0.5);
+}
